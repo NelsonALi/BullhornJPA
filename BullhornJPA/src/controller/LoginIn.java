@@ -45,7 +45,8 @@ public class LoginIn extends HttpServlet {
 		String userid = request.getParameter("loginname");    
 		TDB tdb = new TDB();
 		TuserDB tuserdb = new TuserDB();
-		TUser tuser = tuserdb.selectUser(userid);
+		TUser tuser = null;
+//		TUser tuser = tuserdb.selectUser(userid);
 		if (tuser != null) {
 	        HttpSession session = request.getSession(true);
 	        session.setAttribute("loginname", userid);

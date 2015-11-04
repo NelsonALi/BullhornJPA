@@ -13,7 +13,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="TUSERS")
+@Table(name="TUSERS", schema="testuserdb")
 @NamedQuery(name="Tuser.findAll", query="SELECT t FROM Tuser t")
 public class Tuser implements Serializable {
 	private static final long serialVersionUID = 1L;
