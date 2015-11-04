@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
 import business.Tmsg;
 import customTools.DBUtil;
 
@@ -58,12 +59,14 @@ public class TDB {
 	}
 
 	public static ArrayList<T> selectAll() {
-		ArrayList<T> tList = new ArrayList<T>();
+		List<T> tList = null;
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
+		String qString = "select e from T e";
+		TypedQuery<T> q = (TypedQuery<T>) em.createQuery(qString, T.class);
 		trans.begin();
 		try {
-			tList = (ArrayList<T>) em.createQuery("select e from T e").getResultList();
+			tList = q.getResultList();
 			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -71,7 +74,7 @@ public class TDB {
 		} finally {
 			em.close();
 		}
-		return tList;
+		return  new ArrayList<T>( tList);
 	}
 	 	 
 }

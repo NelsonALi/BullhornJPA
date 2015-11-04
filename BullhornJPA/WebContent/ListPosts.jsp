@@ -78,11 +78,11 @@
 	</nav>
 	<div class="jumbotron">
 		<form class="form-inline" action="UserProfile">
-<%-- 		${message}
- --%>		
-<div class=\"row\"><br><div class=\"col-md-4\">"+aPost.getMsg()+"</div>" +
-					"<div class=\"col-md-4\">"+sdf.format(sqlTime)+"</div>" + 
-					"<div class=\"col-md-4\"><button type=\"submit\" class=\"btn btn-success\">"+aPost.getTuser().getLoginname()+"</button></div></div>		</form>
-	</div>	
+		${message}
+
+<!-- <div class=\"row\"><br><div class=\"col-md-4\">"+aPost.getMsg()+"</div>" + -->
+<!-- 					"<div class=\"col-md-4\">"+sdf.format(sqlTime)+"</div>" +  -->
+<!-- 					"<div class=\"col-md-4\"><button type=\"submit\" class=\"btn btn-success\">"+aPost.getTuser().getLoginname()+"</button></div></div>		</form> -->
+<!-- 	</div>	 -->
 </body>
 </html>

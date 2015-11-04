@@ -101,6 +101,7 @@ public class TuserDB {
 		EntityTransaction trans = em.getTransaction();
 		String qString = "select e from Tuser e where e.loginname = :loginName";
 		TypedQuery<Tuser> q = (TypedQuery<Tuser>) em.createQuery(qString, Tuser.class);
+		q.setParameter("loginName", loginName);
 		Tuser tuser = null;
 		trans.begin();
 		try {

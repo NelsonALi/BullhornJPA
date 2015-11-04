@@ -19,7 +19,9 @@ public class Tuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TUSERS_SEQ")
+    @SequenceGenerator(schema="testuserdb", name="TUSERS_SEQ", sequenceName="TUSERS_SEQ", allocationSize=1)
 	private long id;
 
 	@Temporal(TemporalType.DATE)

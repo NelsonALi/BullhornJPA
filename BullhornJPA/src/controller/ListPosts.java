@@ -19,7 +19,7 @@ import model.*;
 /**
  * Servlet implementation class ListTs
  */
-@WebServlet("/ListTs")
+@WebServlet("/ListPosts")
 public class ListPosts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -58,4 +58,5 @@ public class ListPosts extends HttpServlet {
  		getServletContext().getRequestDispatcher("/ListPosts.jsp").forward(request, response);		
 
 
+}
 }
