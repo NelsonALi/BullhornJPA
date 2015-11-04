@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
+//import java.io.PrintWriter;
+//mport java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class SignUp
@@ -30,7 +31,7 @@ public class SignUp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -38,15 +39,17 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		model.Tuser tuser = new model.Tuser();
 		String userid = request.getParameter("loginname");    
-		String email = request.getParameter("email");    
-		String password = request.getParameter("password");   
-		Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-	    String currentDate=sdf.format(date );
-
-		getServletContext().getRequestDispatcher("/Actions.jsp").forward(request, response);		
+		String motto = request.getParameter("motto");    
+		tuser.setLoginname(userid);
+		tuser.setMotto(motto);
+		tuser.setJoindate(new Date());
+		model.TuserDB.insert(tuser);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("loginname", userid);
+//		getServletContext().getRequestDispatcher("/UserProfile.jsp").forward(request, response);		
+		getServletContext().getRequestDispatcher("/ListTs").forward(request, response);		
 	}
 
 }

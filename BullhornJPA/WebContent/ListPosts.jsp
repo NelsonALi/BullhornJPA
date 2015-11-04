@@ -67,34 +67,22 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">What to Do?<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li class="active"><a href="ListTs">View Tweeter Log</a></li>
+							<li class="active"><a href="ListPosts">View Tweeter Log</a></li>
 							<li><a href="signup.html">Join Tweeting</a></li>
 							<li><a href="login.html">Login</a></li>
-							<li><a href="PostTweet">Login to Create Post</a></li>
+							<li><a href="postmsg.html">Create Post (You need to login first.)</a></li>
 						</ul>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="jumbotron">
-		<form class="form-inline" action="">
-			<table class="table table-condensed">
-				<tr>
-					<td>
-						<div class="form-group">
-							<input type="text" class="form-control"	placeholder="msg comes here for no more than 140 characters" id="tmsg" name="tmsg" disabled>
-						</div>
-					</td>
-					<td>
-						<div class="form-group">
-							<input type="text" class="form-control"	id="posttime" placeholder="post time" name="posttime" disabled><br>		
-							<input type="text" class="form-control"	id="poster" placeholder="poster name" name="poster" disabled>
-						    <button type="submit" class="btn btn-success" onclick="location.href=">View Profile</button>														
-						</div>
-					</td>	
-				</tr>			
-			</table>
-		</form>
+		<form class="form-inline" action="UserProfile">
+<%-- 		${message}
+ --%>		
+<div class=\"row\"><br><div class=\"col-md-4\">"+aPost.getMsg()+"</div>" +
+					"<div class=\"col-md-4\">"+sdf.format(sqlTime)+"</div>" + 
+					"<div class=\"col-md-4\"><button type=\"submit\" class=\"btn btn-success\">"+aPost.getTuser().getLoginname()+"</button></div></div>		</form>
 	</div>	
 </body>
 </html>

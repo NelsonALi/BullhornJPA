@@ -57,13 +57,13 @@ public class TDB {
 		}
 	}
 
-	public static List<T> selectAll() {
-		List tList = new ArrayList<T>();
+	public static ArrayList<T> selectAll() {
+		ArrayList<T> tList = new ArrayList<T>();
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
-			tList = em.createQuery("select e from T e").getResultList();
+			tList = (ArrayList<T>) em.createQuery("select e from T e").getResultList();
 			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);

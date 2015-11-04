@@ -8,7 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
-import business.TUser;
+//import business.TUser;
 
 public class TuserDB {
 
@@ -57,13 +57,13 @@ public class TuserDB {
 		}
 	}
     //may not need this one
-	public static List<TUser> selectAll() {
+	public static List<Tuser> selectAll() {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		List<TUser> tList = new ArrayList<TUser>();
+		List<Tuser> tList = new ArrayList<Tuser>();
 		String qString = "select e from Tuser e";
-		TypedQuery<TUser> q = (TypedQuery<TUser>) em.createQuery(qString, TUser.class);
-		List<TUser> tuser = null;
+		TypedQuery<Tuser> q = (TypedQuery<Tuser>) em.createQuery(qString, Tuser.class);
+		List<Tuser> tuser = null;
 		trans.begin();
 		try {
 			tuser = q.getResultList();
@@ -77,12 +77,31 @@ public class TuserDB {
 		return tList;
 	}
 	
-	public static TUser selectUser(String loginName) {
+	public static Tuser selectUser(int userId) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		String qString = "select e from Tuser e where e.id = :userId";
+		TypedQuery<Tuser> q = (TypedQuery<Tuser>) em.createQuery(qString, Tuser.class);
+		Tuser tuser = null;
+		trans.begin();
+		try {
+			tuser = q.getSingleResult();
+			trans.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+		return tuser;
+	}
+	
+	public static Tuser selectUser(String loginName) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		String qString = "select e from Tuser e where e.loginname = :loginName";
-		TypedQuery<TUser> q = (TypedQuery<TUser>) em.createQuery(qString, TUser.class);
-		TUser tuser = null;
+		TypedQuery<Tuser> q = (TypedQuery<Tuser>) em.createQuery(qString, Tuser.class);
+		Tuser tuser = null;
 		trans.begin();
 		try {
 			tuser = q.getSingleResult();
